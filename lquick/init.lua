@@ -3,7 +3,7 @@ For quickstarting making a game.
 ]]
 local lquick = {}
 
-assert(middleclass, "middleclass is not loaded into the global variable. Please just do that. Please.")
+assert(middleclass, "middleclass is not loaded into the global variable.")
 
 -- Represents the folder structure.
 -- Tables are folders and anything else is a file with the
@@ -24,22 +24,61 @@ local loadables = {
 	structs = {
 		vec2 = "Vec2",
 		vec3 = "Vec3"
+	},
+
+	-- Networking classes
+	network = {
+		net_client = "NetClient",
+		net_connection = "NetConnection",
+		net_message_type = "NetMessageType",
+		net_peer = "NetPeer",
+		net_server = "NetServer"
 	}
 }
 
 local currentModule = (...):gsub("%.init$", "")
 
-local function loadItem(folder, structure)
+local modules = {}
+
+-- __index method for lquick
+local onIndex = function(self, key)
+	if modules[key] then
+		local value = require(modules[key])
+		rawset(self, key, value)
+		return value
+	end
+end
+
+-- Registers items as a module
+local function registerItem(folder, structure)
 	for item, value in pairs(structure) do
 		local fullname = folder .. "." .. item
 		if type(value) == "table" then
-			loadItem(fullname, value)
+			registerItem(fullname, value)
 		else
-			lquick[value] = require(fullname)
+			modules[value] = fullname
 		end
 	end
 end
 
-loadItem(currentModule, loadables)
+registerItem(currentModule, loadables)
 
-return lquick
+-- Loads all modules immediately
+function lquick.loadAll()
+	for key, _ in pairs(modules) do
+		onIndex(lquick, key)
+	end
+end
+
+-- Loads (and returns) a certain module
+function lquick.load(key)
+	if modules[key] == nil then
+		error("Attempting to load unknown or unsupported module.")
+	end
+
+	return onIndex(lquick, key)
+end
+
+return setmetatable(lquick, {
+	__index = onIndex
+})

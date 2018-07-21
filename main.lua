@@ -1,5 +1,7 @@
 -- Load once and be done with it
 middleclass = require "libs.middleclass"
+bitser = require "libs.bitser"
+
 lquick = require "lquick"
 
 function love.load()
@@ -25,4 +27,6 @@ function love.load()
 
 	DBG = require "debugger" ()
 	DBG.allowFunctionIndex(true)
+
+	lquick.loadAll()
 end
