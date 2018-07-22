@@ -25,8 +25,10 @@ function love.load()
 		love.window.setIcon(love.image.newImageData("assets/textures/icon.png"))
 	end
 
+	lquick.loadAll()
+
+	require "tests.network"
+
 	DBG = require "debugger" ()
 	DBG.allowFunctionIndex(true)
-
-	lquick.loadAll()
 end

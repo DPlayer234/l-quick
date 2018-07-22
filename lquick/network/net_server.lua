@@ -9,4 +9,6 @@ local NetPeer = require(currentModule .. "net_peer")
 
 local NetServer = middleclass("NetServer", NetPeer)
 
+-- I get the feeling this isn't too useful right about now.
+
 return NetServer
