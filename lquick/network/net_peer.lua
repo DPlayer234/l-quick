@@ -3,6 +3,7 @@ A peer in the network (for Peer-To-Peer games).
 ]]
 local currentModule = (...):gsub("[^%.]*$", "")
 
+local pairs, tonumber = pairs, tonumber
 local enet = require "enet"
 
 local NetPeer = middleclass("NetPeer")
@@ -11,15 +12,37 @@ local NetConnection  = require(currentModule .. "net_connection")
 local NetMessageType = require(currentModule .. "net_message_type")
 
 -- Initializes a NetPeer instance
-function NetPeer:initialize(port)
-	self._host = self:createHost(port)
-
+function NetPeer:initialize()
 	self._connections = {}
 	self._messageTypes = {}
 
 	for k, v in pairs(NetPeer._messageTypes) do
 		self._messageTypes[k] = v
 	end
+end
+
+-- Starts the peer and creates an ENet host.
+-- If no port is supplied, a wildcard is used and a random port is chosen by ENet.
+function NetPeer:start(port)
+	if self:isRunning() then error("Cannot start an already running NetPeer. Did you mean to restart?") end
+
+	self._host = self:createHost(port)
+end
+
+-- Shuts down the peer and destroys the ENet host
+function NetPeer:shutdown()
+	if not self:isRunning() then return end
+
+	self._host:flush()
+	self._host:destroy()
+
+	self._host = nil
+	self._connections = {}
+end
+
+-- Returns whether the peer is running.
+function NetPeer:isRunning()
+	return self._host ~= nil
 end
 
 -- Creates the host.
@@ -29,11 +52,23 @@ end
 
 -- Gets the socket's address used.
 function NetPeer:getAddress()
+	self:_errorIfNotRunning("getAddress") --#exclude line
+
 	return self._host:get_socket_address()
 end
 
+-- Returns the port (as a number).
+function NetPeer:getPort()
+	self:_errorIfNotRunning("getPort") --#exclude line
+
+	return tonumber(self:getAddress():match("^.-:(.-)$"))
+end
+
 -- Updates the NetPeer, dequeues any stored events and handles received messages.
-function NetPeer:update()
+-- This should be called at least once every frame.
+function NetPeer:service()
+	self:_errorIfNotRunning("service") --#exclude line
+
 	local event = self._host:service(0)
 	while event do
 		self._eventHandlers[event.type](self, event.peer, event.data)
@@ -43,12 +78,16 @@ end
 
 -- Broadcasts a message to all active connections.
 function NetPeer:broadcast(messageType, message)
+	self:_errorIfNotRunning("broadcast") --#exclude line
+
 	messageType:_strip(message)
 	return self:_broadcastDatagram(messageType:_encode(message), messageType.mode)
 end
 
 -- Sends a message to a specific connection.
 function NetPeer:sendTo(connection, messageType, message)
+	self:_errorIfNotRunning("sendTo") --#exclude line
+
 	messageType:_strip(message)
 	return connection:_sendDatagram(messageType:_encode(message), messageType.mode)
 end
@@ -65,6 +104,8 @@ end
 
 -- Connects the peer to a specified address ("hostname:port") and returns the new connection.
 function NetPeer:connect(address)
+	self:_errorIfNotRunning("connect") --#exclude line
+
 	local connection = NetConnection:new(self._host, address)
 	self:_addConnection(connection)
 	return connection
@@ -79,12 +120,6 @@ function NetPeer:getConnections()
 		connections[index] = v
 	end
 	return connections
-end
-
--- Destroys the host. This object may not be used afterwards.
-function NetPeer:destroy()
-	self._host:flush()
-	self._host:destroy()
 end
 
 -- Internal. Broadcasts a datagram to all active connections.
@@ -116,6 +151,15 @@ function NetPeer:_addConnection(connection)
 	connection._netPeer = self
 	self._connections[connection._peer] = connection
 end
+
+--#exclude start
+-- Throws an error if the function for an invalid call on non-running peers
+function NetPeer:_errorIfNotRunning(func)
+	if not self:isRunning() then
+		return error("Cannot use " .. self.class.name .. ":" .. func .. " on not running peers.")
+	end
+end
+--#exclude end
 
 -- Internal. Event handlers for specific ENet events.
 NetPeer._eventHandlers = setmetatable({
@@ -154,7 +198,7 @@ NetPeer._eventHandlers = setmetatable({
 })
 
 function NetPeer:__tostring()
-	return ("%s: %s"):format(self.class.name, self:getAddress())
+	return ("%s: %s"):format(self.class.name, self:isRunning() and self:getAddress() or "inactive")
 end
 
 NetPeer.static.getMessageType = NetPeer.getMessageType

@@ -31,4 +31,6 @@ function love.load()
 
 	DBG = require "debugger" ()
 	DBG.allowFunctionIndex(true)
+	DBG.printWidth = 0.5
+	love.errorhandler = DBG.errorhandler
 end

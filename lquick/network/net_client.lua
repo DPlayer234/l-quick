@@ -14,8 +14,17 @@ function NetClient:createHost(port)
 	return enet.host_create(nil)
 end
 
+-- Shuts down the peer and destroys the ENet host
+function NetClient:shutdown()
+	NetPeer.shutdown(self)
+
+	self._serverConnection = nil
+end
+
 -- Sends a message to the server.
 function NetClient:send(messageType, message)
+	self:_errorIfNotRunning("send") --#exclude line
+
 	return self:sendTo(self._serverConnection, messageType, message)
 end
 

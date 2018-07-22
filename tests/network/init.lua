@@ -33,10 +33,14 @@ do
 			job = job
 		})
 	end
+
+	G_netPeer:start()
 end
 
 function love.update()
-	G_netPeer:update()
+	if G_netPeer:isRunning() then
+		G_netPeer:service()
+	end
 end
 
 function love.draw()

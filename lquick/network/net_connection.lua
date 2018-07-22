@@ -44,7 +44,7 @@ function NetConnection:_sendDatagram(datagram, mode)
 end
 
 function NetConnection:__tostring()
-	return ("%s: %s (%s)"):format(self.class.name, self._peer, self:getID())
+	return ("%s: %s (%s)"):format(self.class.name, self._peer, self:getState())
 end
 
 -- All ENet connection states

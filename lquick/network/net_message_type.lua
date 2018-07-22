@@ -5,7 +5,7 @@ Set the 'mode' and 'args' fields and override the 'onReceive(self, message)' met
 ]]
 local bitser = bitser
 local table = table
-local assert = assert
+local assert, pairs, type, tostring, tonumber = assert, pairs, type, tostring, tonumber
 
 assert(bitser, "bitser is not loaded into the global variable.")
 
@@ -35,6 +35,35 @@ function NetMessageType:onReceive(message) end
 -- Receives the NetMessageType instance as the first parameter and the message as its second.
 function NetMessageType:addOnceOnReceive(closure)
 	self._tempHandlers[#self._tempHandlers + 1] = closure
+end
+
+-- Validates that the set values are valid
+function NetMessageType:validate()
+	--#exclude start
+	assert(type(self.args) == "table", "'args' has to be a table")
+	assert(self.mode == NetMessageType.UNRELIABLE or self.mode == NetMessageType.RELIABLE, "'mode' has to be a NetMessageType.UNRELIABLE or NetMessageType.RELIABLE")
+	assert(type(self.onReceive) == "function", "'onReceive' has to be a function")
+	--#exclude end
+end
+
+-- Casts the value to a string
+function NetMessageType:asString(value)
+	return tostring(value)
+end
+
+-- Casts the value to a number
+function NetMessageType:asNumber(value)
+	return tonumber(value) or 0
+end
+
+-- Casts the value to a boolean
+function NetMessageType:asBool(value)
+	return not not value
+end
+
+-- Casts the value to a table
+function NetMessageType:asTable(value)
+	return type(value) == "table" and value or {}
 end
 
 -- Internal. Strips unneeded data from the message.
