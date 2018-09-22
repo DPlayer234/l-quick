@@ -33,7 +33,10 @@ local loadables = {
 		net_message_type = "NetMessageType",
 		net_peer = "NetPeer",
 		net_server = "NetServer"
-	}
+	},
+
+	-- SSUI
+	ssui = "ssui"
 }
 
 local currentModule = (...):gsub("%.init$", "")
