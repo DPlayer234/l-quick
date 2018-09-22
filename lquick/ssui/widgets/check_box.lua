@@ -8,8 +8,8 @@ local Widget = require(parentModule .. ".widget")
 local Button = require(currentModule .. ".button")
 local CheckBox = middleclass("CheckBox", Button)
 
-function CheckBox:init(initState)
-	Button.init(self)
+function CheckBox:initialize(initState)
+	Button.initialize(self)
 
 	self.checked = initState and true
 

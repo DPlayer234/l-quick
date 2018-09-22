@@ -9,8 +9,8 @@ local EventEmitter = require(currentModule .. ".event_emitter")
 
 local Widget = middleclass("Widget", EventEmitter)
 
-function Widget:init()
-	EventEmitter.init(self)
+function Widget:initialize()
+	EventEmitter.initialize(self)
 
 	self._context = false
 	self.parent = false

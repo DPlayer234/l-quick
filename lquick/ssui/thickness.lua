@@ -3,7 +3,7 @@ local type = type
 
 local Thickness = middleclass("Thickness")
 
-function Thickness:init(left, top, right, bottom)
+function Thickness:initialize(left, top, right, bottom)
 	self.left   = left
 	self.top    = top or left
 	self.right  = right or left

@@ -9,8 +9,8 @@ local Widget = require(parentModule .. ".widget")
 
 local EditBox = middleclass("EditBox", Widget)
 
-function EditBox:init(startText)
-	Widget.init(self)
+function EditBox:initialize(startText)
+	Widget.initialize(self)
 
 	self:setPadding(4, 0)
 

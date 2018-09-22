@@ -4,8 +4,8 @@ local Widget = require(parentModule .. ".widget")
 
 local Button = middleclass("Button", Widget)
 
-function Button:init()
-	Widget.init(self)
+function Button:initialize()
+	Widget.initialize(self)
 
 	self._pressed = false
 

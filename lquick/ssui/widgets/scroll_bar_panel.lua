@@ -8,8 +8,8 @@ local Scrollbar = require(currentModule .. ".scroll_bar")
 
 local ScrollBarPanel = middleclass("ScrollBarPanel", Widget)
 
-function ScrollBarPanel:init(widget, direction)
-	Widget.init(self)
+function ScrollBarPanel:initialize(widget, direction)
+	Widget.initialize(self)
 
 	self._widget = widget
 	self._scrollBar = Scrollbar(widget, direction)

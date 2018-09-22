@@ -15,9 +15,9 @@ local onCloseClick = function(self)
 	self.parent.parent:emit("close")
 end
 
-function WindowHeader:init(height, dragable, closable)
+function WindowHeader:initialize(height, dragable, closable)
 	if height == true or height == false or height == nil then height = HEADER_HEIGHT end
-	Widget.init(self)
+	Widget.initialize(self)
 	self:setPositionMode("absolute", 0, 0)
 	self:setSizeMode("absolute", height, height)
 

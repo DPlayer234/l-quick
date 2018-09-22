@@ -11,8 +11,8 @@ local StackPanel = middleclass("StackPanel", Widget)
 
 local StackChild = middleclass("StackChild", Widget)
 
-function StackPanel:init(direction, size)
-	Widget.init(self)
+function StackPanel:initialize(direction, size)
+	Widget.initialize(self)
 
 	self._vertical = direction == "vertical"
 	self._size = size
@@ -38,8 +38,8 @@ end
 --[[
 Define the panel children
 ]]
-function StackChild:init(parent, widget)
-	Widget.init(self)
+function StackChild:initialize(parent, widget)
+	Widget.initialize(self)
 
 	self._vertical = parent._vertical
 

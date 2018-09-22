@@ -4,8 +4,8 @@ local Widget = require(parentModule .. ".widget")
 
 local Empty = middleclass("Empty", Widget)
 
-function Empty:init()
-	Widget.init(self)
+function Empty:initialize()
+	Widget.initialize(self)
 	self.transparent = true
 end
 

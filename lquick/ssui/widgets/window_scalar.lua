@@ -11,8 +11,8 @@ local WindowScalar = middleclass("WindowScalar", Button)
 
 local SCALAR_SIZE = 16
 
-function WindowScalar:init()
-	Button.init(self)
+function WindowScalar:initialize()
+	Button.initialize(self)
 	self:setPositionMode("relative", 1, 1)
 	self:setSizeMode("absolute", SCALAR_SIZE, SCALAR_SIZE)
 	self:setAlign(1, 1)

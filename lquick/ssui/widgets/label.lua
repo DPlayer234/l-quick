@@ -4,8 +4,8 @@ local Widget = require(parentModule .. ".widget")
 
 local Label = middleclass("Label", Widget)
 
-function Label:init(text, font, wrapMode)
-	Widget.init(self)
+function Label:initialize(text, font, wrapMode)
+	Widget.initialize(self)
 
 	self.text = text or ""
 	self.font = font or love.graphics.getFont()

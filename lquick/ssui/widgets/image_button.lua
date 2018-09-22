@@ -8,8 +8,8 @@ local Widget = require(parentModule .. ".widget")
 local Button = require(currentModule .. ".button")
 local ImageButton = middleclass("ImageButton", Button)
 
-function ImageButton:init(texture, quad)
-	Button.init(self)
+function ImageButton:initialize(texture, quad)
+	Button.initialize(self)
 	self._texture = texture
 	self._quad = quad
 

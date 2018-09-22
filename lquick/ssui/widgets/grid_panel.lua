@@ -11,8 +11,8 @@ local GridChild = middleclass("GridChild", Widget)
 --[[
 Define the panel
 ]]
-function GridPanel:init(childMode, columnWidth, rowHeight, options)
-	Widget.init(self)
+function GridPanel:initialize(childMode, columnWidth, rowHeight, options)
+	Widget.initialize(self)
 
 	if options == nil then options = {} end
 
@@ -117,8 +117,8 @@ end
 --[[
 Define the panel children
 ]]
-function GridChild:init(parent, widget)
-	Widget.init(self)
+function GridChild:initialize(parent, widget)
+	Widget.initialize(self)
 	self:setPositionMode(parent._childMode, 0, 0)
 	self:setSizeMode(parent._childMode, parent._columnWidth, parent._rowHeight)
 

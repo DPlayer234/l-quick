@@ -6,8 +6,8 @@ local Widget = require(currentModule .. ".widget")
 
 local Context = middleclass("Context", Widget)
 
-function Context:init()
-	Widget.init(self)
+function Context:initialize()
+	Widget.initialize(self)
 	self:setPositionMode("relative", 0, 0)
 	self:setSizeMode("relative", 1, 1)
 

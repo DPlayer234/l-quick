@@ -12,8 +12,8 @@ Menu.ImageItem = middleclass("Menu.ImageItem", ImageButton)
 
 local weakTable = { __mode = "v" }
 
-function Menu:init()
-	EventEmitter.init(self)
+function Menu:initialize()
+	EventEmitter.initialize(self)
 
 	self._items = setmetatable({}, weakTable)
 
@@ -36,8 +36,8 @@ function Menu:getSelectedItem()
 	return self._selectedItem
 end
 
-function Menu.Item:init(menu)
-	Button.init(self)
+function Menu.Item:initialize(menu)
+	Button.initialize(self)
 
 	self._menu = menu
 
@@ -68,8 +68,8 @@ function Menu.Item:_onMenuItemClick()
 	self:select()
 end
 
-function Menu.ImageItem:init(menu, texture, quad)
-	ImageButton.init(self, texture, quad)
+function Menu.ImageItem:initialize(menu, texture, quad)
+	ImageButton.initialize(self, texture, quad)
 
 	self._menu = menu
 

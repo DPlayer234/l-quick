@@ -2,7 +2,7 @@ local table = table
 
 local EventEmitter = middleclass("EventEmitter")
 
-function EventEmitter:init()
+function EventEmitter:initialize()
 	self._events = {}
 end
 

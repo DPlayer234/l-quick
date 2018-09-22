@@ -7,8 +7,8 @@ local Widget = require(parentModule .. ".widget")
 
 local ScrollBarCursor = middleclass("ScrollBarCursor", Widget)
 
-function ScrollBarCursor:init(widget, vertical)
-	Widget.init(self)
+function ScrollBarCursor:initialize(widget, vertical)
+	Widget.initialize(self)
 	self._widget = widget
 	self._vertical = vertical
 

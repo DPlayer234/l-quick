@@ -16,8 +16,8 @@ local ContextWindow = middleclass("ContextWindow", Window)
 
 local INDICATOR_WIDTH = 12 --#const
 
-function ContextMenu:init(default, options)
-	Button.init(self)
+function ContextMenu:initialize(default, options)
+	Button.initialize(self)
 
 	self._selected = default
 	self._options = options or {}
@@ -95,14 +95,14 @@ function ContextMenu:_onContextDestroy()
 	end
 end
 
-function ContextWindow:init(contextMenu)
+function ContextWindow:initialize(contextMenu)
 	local x, y, w, h = contextMenu:getInnerRect()
 
 	self._contextMenu = contextMenu
 	self._options = contextMenu._options
 	self._tooltips = contextMenu._tooltips
 
-	Window.init(self, x, y, w, h * #self._options)
+	Window.initialize(self, x, y, w, h * #self._options)
 
 	self._panel = StackPanel("vertical", h)
 	self:add(self._panel)

@@ -12,8 +12,8 @@ local SCROLL_BAR_WIDTH = 16 --#const
 
 ScrollBar.WIDTH = SCROLL_BAR_WIDTH
 
-function ScrollBar:init(widget, direction)
-	Widget.init(self)
+function ScrollBar:initialize(widget, direction)
+	Widget.initialize(self)
 
 	self._widget = widget
 	self._vertical = direction == "vertical"

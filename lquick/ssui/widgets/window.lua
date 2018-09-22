@@ -12,8 +12,8 @@ local Window = middleclass("Window", Widget)
 Window.Header = WindowHeader
 Window.Scalar = WindowScalar
 
-function Window:init(x, y, width, height, options)
-	Widget.init(self)
+function Window:initialize(x, y, width, height, options)
+	Widget.initialize(self)
 	self:setPositionMode("absolute", x, y)
 	self:setSizeMode("absolute", width, height)
 

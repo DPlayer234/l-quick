@@ -8,8 +8,8 @@ local Tooltip = middleclass("Tooltip", Widget)
 
 local WRAP_LIMIT = 2000 --#const
 
-function Tooltip:init(text, font, wrapMode)
-	Widget.init(self)
+function Tooltip:initialize(text, font, wrapMode)
+	Widget.initialize(self)
 
 	self.text = text or ""
 	self.font = font or love.graphics.getFont()
