@@ -36,6 +36,13 @@ local loadables = {
 		net_server = "NetServer"
 	},
 
+	-- Render
+	rendering = {
+		effect_stack = "EffectStack",
+		effect = "Effect",
+		renderer = "Renderer"
+	},
+
 	-- SSUI
 	ssui = "ssui"
 }

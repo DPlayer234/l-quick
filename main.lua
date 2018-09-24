@@ -27,7 +27,7 @@ function love.load()
 
 	lquick.loadAll()
 
-	--require "tests.network"
+	require "tests.rendering"
 
 	DBG = require "debugger" ()
 	DBG.allowFunctionIndex(true)
