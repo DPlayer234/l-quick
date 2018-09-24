@@ -31,7 +31,7 @@ function Context:initialize()
 end
 
 function Context:draw()
-	self.Widget.draw(self)
+	Widget.draw(self)
 
 	if self._nextTooltip then
 		self._nextTooltip:drawTooltip()
@@ -69,7 +69,7 @@ end
 
 function Context:setContext(context)
 	if context == self then
-		return self.Widget.setContext(self, context)
+		return Widget.setContext(self, context)
 	end
 
 	error("Cannot add contexts to other widgets!", 2)
@@ -164,7 +164,7 @@ local function merged(base, over)
 end
 
 function Context:setTheme(value)
-	self.Widget.setTheme(self, merged(self.defaultTheme, value))
+	Widget.setTheme(self, merged(self.defaultTheme, value))
 end
 
 local function c(cstring)

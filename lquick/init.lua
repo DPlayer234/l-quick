@@ -43,8 +43,8 @@ local loadables = {
 		renderer = "Renderer"
 	},
 
-	-- SSUI
-	ssui = "ssui"
+	ssui = "ssui",
+	input = "input"
 }
 
 local currentModule = (...):gsub("%.init$", "")
