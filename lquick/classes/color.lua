@@ -80,6 +80,11 @@ function Color:__tostring()
 	return ("#%02x%02x%02x%02x"):format(self[1] * 255, self[2] * 255, self[3] * 255, self[4] * 255)
 end
 
+function Color.__eq(a, b)
+	return (a[4] == 0 and b[4] == 0) or
+		(a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4])
+end
+
 function Color.static:RGB(r, g, b)
 	return self:RGBA(r, g, b, 1.0)
 end

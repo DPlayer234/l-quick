@@ -28,7 +28,7 @@ function GridPanel:initialize(childMode, columnWidth, rowHeight, options)
 end
 
 function GridPanel:setPadding(a, b, c, d)
-	self.Widget.setPadding(self, a, b, c, d)
+	Widget.setPadding(self, a, b, c, d)
 	self._padding = self._padding * 0.5
 	return self
 end
@@ -42,11 +42,11 @@ function GridPanel:alignChildren()
 end
 
 function GridPanel:add(widget)
-	return self.Widget.add(self, GridChild(self, widget))
+	return Widget.add(self, GridChild(self, widget))
 end
 
 function GridPanel:recalculateSize()
-	self.Widget.recalculateSize(self)
+	Widget.recalculateSize(self)
 	self:alignChildren()
 end
 
@@ -131,7 +131,7 @@ end
 
 function GridChild:recalculatePosition()
 	self:getParentSize()
-	return self.Widget.recalculatePosition(self)
+	return Widget.recalculatePosition(self)
 end
 
 return GridPanel

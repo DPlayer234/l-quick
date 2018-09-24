@@ -38,7 +38,7 @@ function ContextMenu:initialize(default, options)
 end
 
 function ContextMenu:setPadding(a, b, c, d)
-	self.Widget.setPadding(self, a, b, c, d)
+	Button.setPadding(self, a, b, c, d)
 
 	self:_adjustPadding()
 

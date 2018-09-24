@@ -51,7 +51,7 @@ function Window:initialize(x, y, width, height, options)
 end
 
 function Window:setPadding(a, b, c, d)
-	self.Widget.setPadding(self, a, b, c, d)
+	Widget.setPadding(self, a, b, c, d)
 
 	self:_adjustPadding()
 

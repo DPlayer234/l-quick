@@ -22,13 +22,13 @@ function StackPanel:initialize(direction, size)
 end
 
 function StackPanel:setPadding(a, b, c, d)
-	self.Widget.setPadding(self, a, b, c, d)
+	Widget.setPadding(self, a, b, c, d)
 	self._padding = self._padding * 0.5
 	return self
 end
 
 function StackPanel:add(widget)
-	self.Widget.add(self, StackChild(self, widget))
+	Widget.add(self, StackChild(self, widget))
 
 	self._nextPos = self._size * #self._children
 
@@ -69,7 +69,7 @@ function StackChild:recalculatePosition()
 		self._height = h
 	end
 
-	return self.Widget.recalculatePosition(self)
+	return Widget.recalculatePosition(self)
 end
 
 return StackPanel

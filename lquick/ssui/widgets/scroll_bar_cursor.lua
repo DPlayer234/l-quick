@@ -62,12 +62,12 @@ function ScrollBarCursor:recalculateValue()
 end
 
 function ScrollBarCursor:recalculatePosition()
-	self.Widget.recalculatePosition(self)
+	Widget.recalculatePosition(self)
 	self:recalculateValue()
 end
 
 function ScrollBarCursor:recalculateSize()
-	self.Widget.recalculateSize(self)
+	Widget.recalculateSize(self)
 	self:recalculateValue()
 end
 
