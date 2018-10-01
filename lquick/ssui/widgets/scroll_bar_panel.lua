@@ -6,10 +6,10 @@ local love = require "love"
 local Widget = require(parentModule .. ".widget")
 local Scrollbar = require(currentModule .. ".scroll_bar")
 
-local ScrollBarPanel = middleclass("ScrollBarPanel", Widget)
+local ScrollBarPanel = class("ScrollBarPanel", Widget)
 
-function ScrollBarPanel:initialize(widget, direction)
-	Widget.initialize(self)
+function ScrollBarPanel:new(widget, direction)
+	self:Widget()
 
 	self._widget = widget
 	self._scrollBar = Scrollbar(widget, direction)

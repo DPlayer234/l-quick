@@ -4,7 +4,7 @@ Renderer class to allow for stacked post-processing effects
 local currentModule = (...):gsub("[^%.]*$", "")
 local love_graphics = require "love.graphics"
 
-local Renderer = middleclass("Renderer")
+local Renderer = class("Renderer")
 
 local EffectStack = require(currentModule .. ".effect_stack")
 
@@ -32,8 +32,8 @@ local function bufferCanvas(canvas)
 end
 
 -- Initializes a new Renderer
-function Renderer:initialize()
-	self.effects = EffectStack:new(self)
+function Renderer:new()
+	self.effects = EffectStack(self)
 end
 
 -- Updates the renderer and its EffectStack
@@ -85,7 +85,7 @@ function Renderer:_applyEffect(texture, target, effect)
 end
 
 -- Globally sets the options for generated canvases. Clears the canvas buffer.
-function Renderer.static:setCanvasOptions(settings)
+function Renderer.setCanvasOptions(settings)
 	canvasBuffer = {}
 	canvasSettings = settings
 end

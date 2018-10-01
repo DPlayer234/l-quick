@@ -6,10 +6,10 @@ local assert = assert
 local remove = table.remove
 local coroutine = coroutine
 
-local EventStore = middleclass("EventStore")
+local EventStore = class("EventStore")
 
 -- Initializes a new Event Store.
-function EventStore:initialize()
+function EventStore:new()
 	self._list = {}
 	self._tempList = false
 end

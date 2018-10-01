@@ -2,7 +2,7 @@
 Networking tests
 ]]
 do
-	G_netPeer = lquick.NetPeer:new()
+	G_netPeer = lquick.NetPeer()
 
 	G_connectMessage = G_netPeer:getMessageType("connect")
 	G_disconnectMessage = G_netPeer:getMessageType("disconnect")

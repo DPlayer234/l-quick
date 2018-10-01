@@ -1,9 +1,9 @@
 local math = math
 local type = type
 
-local Thickness = middleclass("Thickness")
+local Thickness = class("Thickness")
 
-function Thickness:initialize(left, top, right, bottom)
+function Thickness:new(left, top, right, bottom)
 	self.left   = left
 	self.top    = top or left
 	self.right  = right or left

@@ -3,17 +3,17 @@ local currentModule = (...):gsub("%.[^%.]+$", "")
 
 local EventEmitter = require(parentModule .. ".event_emitter")
 
-local Menu = middleclass("Menu", EventEmitter)
+local Menu = class("Menu", EventEmitter)
 
 local Button = require(currentModule .. ".button")
 local ImageButton = require(currentModule .. ".image_button")
-Menu.Item = middleclass("Menu.Item", Button)
-Menu.ImageItem = middleclass("Menu.ImageItem", ImageButton)
+Menu.Item = class("Menu.Item", Button)
+Menu.ImageItem = class("Menu.ImageItem", ImageButton)
 
 local weakTable = { __mode = "v" }
 
-function Menu:initialize()
-	EventEmitter.initialize(self)
+function Menu:new()
+	self:EventEmitter()
 
 	self._items = setmetatable({}, weakTable)
 
@@ -36,8 +36,8 @@ function Menu:getSelectedItem()
 	return self._selectedItem
 end
 
-function Menu.Item:initialize(menu)
-	Button.initialize(self)
+function Menu.Item:new(menu)
+	self:Button()
 
 	self._menu = menu
 
@@ -68,8 +68,8 @@ function Menu.Item:_onMenuItemClick()
 	self:select()
 end
 
-function Menu.ImageItem:initialize(menu, texture, quad)
-	ImageButton.initialize(self, texture, quad)
+function Menu.ImageItem:new(menu, texture, quad)
+	self:ImageButton(texture, quad)
 
 	self._menu = menu
 

@@ -5,12 +5,12 @@ For classes, override update, exit and enter, otherwise call setUpdate, setExit 
 ]]
 local currentModule = (...):gsub("[^%.]*$", "")
 
-local State = middleclass("State")
+local State = class("State")
 
 local Transition = require(currentModule .. "transition")
 
 -- Initialize a new named state
-function State:initialize(name)
+function State:new(name)
 	self._name = name
 	self._transitions = {}
 end

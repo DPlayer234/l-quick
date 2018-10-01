@@ -2,9 +2,9 @@
 local math = math
 local bit = require "bit"
 
-local Color = middleclass("Color")
+local Color = class("Color")
 
-function Color:initialize(r, g, b, a)
+function Color:new(r, g, b, a)
 	self[1] = r or 0.0
 	self[2] = g or 0.0
 	self[3] = b or 0.0
@@ -85,15 +85,15 @@ function Color.__eq(a, b)
 		(a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4])
 end
 
-function Color.static:RGB(r, g, b)
-	return self:RGBA(r, g, b, 1.0)
+function Color.RGB(r, g, b)
+	return Color.RGBA(r, g, b, 1.0)
 end
 
-function Color.static:RGBA(r, g, b, a)
+function Color.RGBA(r, g, b, a)
 	return Color(r, g, b, a)
 end
 
-function Color.static:HSV(h, s, v, a)
+function Color.HSV(h, s, v, a)
 	h = h % 360
 	local c = v * s
 	local x = c * (1 - math.abs((h / 60) % 2 - 1))
@@ -108,7 +108,7 @@ function Color.static:HSV(h, s, v, a)
 		or             Color(c, 0, x, a)
 end
 
-function Color.static:hex(value)
+function Color.hex(value)
 	local b = bit.band(value, 0xff) / 0xff
 	local g = bit.band(bit.rshift(value,  8), 0xff) / 0xff
 	local r = bit.band(bit.rshift(value, 16), 0xff) / 0xff
@@ -116,7 +116,7 @@ function Color.static:hex(value)
 	return Color(r, g, b, 1.0)
 end
 
-function Color.static:hexa(value)
+function Color.hexa(value)
 	local a = bit.band(value, 0xff) / 0xff
 	local b = bit.band(bit.rshift(value,  8), 0xff) / 0xff
 	local g = bit.band(bit.rshift(value, 16), 0xff) / 0xff
@@ -125,16 +125,16 @@ function Color.static:hexa(value)
 	return Color(r, g, b, a)
 end
 
-Color.static.red         = Color:hex(0xff0000)
-Color.static.orange      = Color:hex(0xff7700)
-Color.static.yellow      = Color:hex(0xffe100)
-Color.static.green       = Color:hex(0x00be0e)
-Color.static.aqua        = Color:hex(0x00ffff)
-Color.static.blue        = Color:hex(0x0000ff)
-Color.static.purple      = Color:hex(0xa500ff)
-Color.static.magenta     = Color:hex(0xff00ff)
-Color.static.white       = Color:hex(0xffffff)
-Color.static.black       = Color:hex(0x000000)
-Color.static.transparent = Color:hexa(0x00000)
+Color.red         = Color.hex(0xff0000)
+Color.orange      = Color.hex(0xff7700)
+Color.yellow      = Color.hex(0xffe100)
+Color.green       = Color.hex(0x00be0e)
+Color.aqua        = Color.hex(0x00ffff)
+Color.blue        = Color.hex(0x0000ff)
+Color.purple      = Color.hex(0xa500ff)
+Color.magenta     = Color.hex(0xff00ff)
+Color.white       = Color.hex(0xffffff)
+Color.black       = Color.hex(0x000000)
+Color.transparent = Color.hexa(0x00000)
 
 return Color

@@ -4,7 +4,7 @@ Easy to use coroutines
 local coroutine = coroutine
 local assert = assert
 
-local Coroutine = middleclass("Coroutine")
+local Coroutine = class("Coroutine")
 
 -- Returns all arguments passed except the first
 local function _returnFrom2nd(first, ...)
@@ -12,7 +12,7 @@ local function _returnFrom2nd(first, ...)
 end
 
 -- Initialize a new coroutine
-function Coroutine:initialize(closure)
+function Coroutine:new(closure)
 	self:setClosure(closure)
 end
 

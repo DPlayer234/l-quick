@@ -7,16 +7,16 @@ local currentModule = (...):gsub("[^%.]*$", "")
 local assert, type = assert, type
 local Node = require(currentModule .. "node")
 
-local Parallel = middleclass("Parallel", Node)
+local Parallel = class("Parallel", Node)
 
-function Parallel:initialize()
+function Parallel:new()
 	self._finChildren = {}
 
-	Node.initialize(self)
+	self:Node()
 end
 
 function Parallel:reset()
-	Node.reset(self)
+	self.Node.reset(self)
 
 	for i=1, #self._finChildren do
 		self._finChildren[i] = false

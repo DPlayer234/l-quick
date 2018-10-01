@@ -4,15 +4,15 @@ local math = math
 
 local Widget = require(parentModule .. ".widget")
 
-local GridPanel = middleclass("GridPanel", Widget)
+local GridPanel = class("GridPanel", Widget)
 
-local GridChild = middleclass("GridChild", Widget)
+local GridChild = class("GridChild", Widget)
 
 --[[
 Define the panel
 ]]
-function GridPanel:initialize(childMode, columnWidth, rowHeight, options)
-	Widget.initialize(self)
+function GridPanel:new(childMode, columnWidth, rowHeight, options)
+	self:Widget()
 
 	if options == nil then options = {} end
 
@@ -28,7 +28,7 @@ function GridPanel:initialize(childMode, columnWidth, rowHeight, options)
 end
 
 function GridPanel:setPadding(a, b, c, d)
-	Widget.setPadding(self, a, b, c, d)
+	self.Widget.setPadding(self, a, b, c, d)
 	self._padding = self._padding * 0.5
 	return self
 end
@@ -42,11 +42,11 @@ function GridPanel:alignChildren()
 end
 
 function GridPanel:add(widget)
-	return Widget.add(self, GridChild(self, widget))
+	return self.Widget.add(self, GridChild(self, widget))
 end
 
 function GridPanel:recalculateSize()
-	Widget.recalculateSize(self)
+	self.Widget.recalculateSize(self)
 	self:alignChildren()
 end
 
@@ -117,8 +117,8 @@ end
 --[[
 Define the panel children
 ]]
-function GridChild:initialize(parent, widget)
-	Widget.initialize(self)
+function GridChild:new(parent, widget)
+	self:Widget()
 	self:setPositionMode(parent._childMode, 0, 0)
 	self:setSizeMode(parent._childMode, parent._columnWidth, parent._rowHeight)
 
@@ -131,7 +131,7 @@ end
 
 function GridChild:recalculatePosition()
 	self:getParentSize()
-	return Widget.recalculatePosition(self)
+	return self.Widget.recalculatePosition(self)
 end
 
 return GridPanel

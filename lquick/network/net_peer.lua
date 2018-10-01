@@ -6,13 +6,13 @@ local currentModule = (...):gsub("[^%.]*$", "")
 local pairs, tonumber = pairs, tonumber
 local enet = require "enet"
 
-local NetPeer = middleclass("NetPeer")
+local NetPeer = class("NetPeer")
 
 local NetConnection  = require(currentModule .. "net_connection")
 local NetMessageType = require(currentModule .. "net_message_type")
 
 -- Initializes a NetPeer instance
-function NetPeer:initialize()
+function NetPeer:new()
 	self._connections = {}
 	self._messageTypes = {}
 
@@ -95,7 +95,7 @@ end
 -- Gets (or even creates) a message type for this peer and returns it.
 function NetPeer:getMessageType(name, dontCreate)
 	if not self._messageTypes[name] and not dontCreate then
-		local messageType = NetMessageType:new(name)
+		local messageType = NetMessageType(name)
 		self._messageTypes[name] = messageType
 	end
 
@@ -106,7 +106,7 @@ end
 function NetPeer:connect(address)
 	self:_errorIfNotRunning("connect") --#exclude line
 
-	local connection = NetConnection:new(self._host, address)
+	local connection = NetConnection(self._host, address)
 	self:_addConnection(connection)
 	return connection
 end
@@ -134,7 +134,7 @@ end
 
 -- Internal. Adds a peer as a connection and returns it.
 function NetPeer:_addPeer(peer)
-	local connection = NetConnection:new(peer)
+	local connection = NetConnection(peer)
 	self:_addConnection(connection)
 	return connection
 end
@@ -201,11 +201,10 @@ function NetPeer:__tostring()
 	return ("%s: %s"):format(self.class.name, self:isRunning() and self:getAddress() or "inactive")
 end
 
-NetPeer.static.getMessageType = NetPeer.getMessageType
-NetPeer.static._messageTypes = {}
+NetPeer._messageTypes = {}
 
-function NetPeer.static:subclassed(newclass)
-	newclass.static._messageTypes = {}
+function NetPeer:__inherited(newclass)
+	newclass._messageTypes = {}
 end
 
 return NetPeer

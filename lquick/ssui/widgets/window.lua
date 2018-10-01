@@ -7,13 +7,13 @@ local Label = require(currentModule .. ".label")
 local WindowHeader = require(currentModule .. ".window_header")
 local WindowScalar = require(currentModule .. ".window_scalar")
 
-local Window = middleclass("Window", Widget)
+local Window = class("Window", Widget)
 
 Window.Header = WindowHeader
 Window.Scalar = WindowScalar
 
-function Window:initialize(x, y, width, height, options)
-	Widget.initialize(self)
+function Window:new(x, y, width, height, options)
+	self:Widget()
 	self:setPositionMode("absolute", x, y)
 	self:setSizeMode("absolute", width, height)
 
@@ -51,7 +51,7 @@ function Window:initialize(x, y, width, height, options)
 end
 
 function Window:setPadding(a, b, c, d)
-	Widget.setPadding(self, a, b, c, d)
+	self.Widget.setPadding(self, a, b, c, d)
 
 	self:_adjustPadding()
 

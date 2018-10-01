@@ -1,5 +1,5 @@
 -- Load once and be done with it
-middleclass = require "libs.middleclass"
+class = require "libs.class"
 bitser = require "libs.bitser"
 
 lquick = require "lquick"

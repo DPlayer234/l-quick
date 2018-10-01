@@ -3,10 +3,10 @@ This is any node element in the BehaviorTree.
 ]]
 local assert, type = assert, type
 
-local Node = middleclass("Node")
+local Node = class("Node")
 
 -- Initialize a new node (do not instantiate explicitly)
-function Node:initialize()
+function Node:new()
 	self._parent = nil
 
 	self._children = {}

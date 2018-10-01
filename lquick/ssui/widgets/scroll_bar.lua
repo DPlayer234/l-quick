@@ -6,14 +6,14 @@ local love = require "love"
 local Widget = require(parentModule .. ".widget")
 local ScrollBarCursor = require(currentModule .. ".scroll_bar_cursor")
 
-local ScrollBar = middleclass("ScrollBar", Widget)
+local ScrollBar = class("ScrollBar", Widget)
 
 local SCROLL_BAR_WIDTH = 16 --#const
 
 ScrollBar.WIDTH = SCROLL_BAR_WIDTH
 
-function ScrollBar:initialize(widget, direction)
-	Widget.initialize(self)
+function ScrollBar:new(widget, direction)
+	self:Widget()
 
 	self._widget = widget
 	self._vertical = direction == "vertical"

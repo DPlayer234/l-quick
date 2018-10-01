@@ -4,12 +4,12 @@ local love = require "love"
 
 local Widget = require(parentModule .. ".widget")
 
-local Tooltip = middleclass("Tooltip", Widget)
+local Tooltip = class("Tooltip", Widget)
 
 local WRAP_LIMIT = 2000 --#const
 
-function Tooltip:initialize(text, font, wrapMode)
-	Widget.initialize(self)
+function Tooltip:new(text, font, wrapMode)
+	self:Widget()
 
 	self.text = text or ""
 	self.font = font or love.graphics.getFont()

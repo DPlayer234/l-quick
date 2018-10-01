@@ -9,13 +9,13 @@ local assert = assert
 local Coroutine = require(parentModule .. "coroutine")
 local Node = require(currentModule .. "node")
 
-local Task = middleclass("Task", Node)
+local Task = class("Task", Node)
 
 -- Pass a function to the constructor to set the coroutine function to run.
 -- The function should return 'false' if it did not exit successfully (which is whatever you define success to be)
 -- and return 'true' if it did exit successfully. It may also yield to delay execution.
 -- Also see Coroutines.
-function Task:initialize(closure)
+function Task:new(closure)
 	self._coroutine = Coroutine(closure)
 	self:Node()
 end

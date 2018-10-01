@@ -3,10 +3,10 @@ A stack of post-processing effects
 ]]
 local table = table
 
-local EffectStack = middleclass("EffectStack")
+local EffectStack = class("EffectStack")
 
 -- Initializes a new EffectStack instance
-function EffectStack:initialize(renderer)
+function EffectStack:new(renderer)
 	self._stack = {}
 	self._actives = {}
 

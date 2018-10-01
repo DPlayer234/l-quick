@@ -4,10 +4,10 @@ If you instantiate the same Transition often, consider inheriting this call and 
 ]]
 local currentModule = (...):gsub("[^%.]*$", "")
 
-local Transition = middleclass("Transition")
+local Transition = class("Transition")
 
 -- Initialize a new transition, specifiying the state to transition to by reference or name.
-function Transition:initialize(toState)
+function Transition:new(toState)
 	if type(toState) == "string" then
 		self._toName = toState
 	else

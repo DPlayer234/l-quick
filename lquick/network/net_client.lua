@@ -7,7 +7,7 @@ local enet = require "enet"
 
 local NetPeer = require(currentModule .. "net_peer")
 
-local NetClient = middleclass("NetClient", NetPeer)
+local NetClient = class("NetClient", NetPeer)
 
 -- Creates a host. Clients cannot be connected to.
 function NetClient:createHost(port)
@@ -16,7 +16,7 @@ end
 
 -- Shuts down the peer and destroys the ENet host
 function NetClient:shutdown()
-	NetPeer.shutdown(self)
+	self.NetPeer.shutdown(self)
 
 	self._serverConnection = nil
 end
@@ -32,7 +32,7 @@ end
 function NetClient:connect(address)
 	if self._serverConnection ~= nil then error("Can only connect NetClients to one remote-host.") end
 
-	local connection = NetPeer.connect(self, address)
+	local connection = self.NetPeer.connect(self, address)
 	self._serverConnection = connection
 	return connection
 end
@@ -49,7 +49,7 @@ end
 
 -- Internal. Removes a peer as a connection and returns it.
 function NetClient:_removePeer(peer)
-	local connection = NetPeer._removePeer(self, peer)
+	local connection = self.NetPeer._removePeer(self, peer)
 
 	if connection == self._serverConnection then
 		self._serverConnection = nil

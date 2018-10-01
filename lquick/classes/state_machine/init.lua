@@ -1,4 +1,4 @@
 --[[
-Returns the StateMachine middleclass
+Returns the StateMachine class
 ]]
 return require((...):gsub("%.init$", "") .. ".state_machine")

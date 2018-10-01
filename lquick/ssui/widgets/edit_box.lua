@@ -7,10 +7,10 @@ local table = table
 local Label = require(currentModule .. ".label")
 local Widget = require(parentModule .. ".widget")
 
-local EditBox = middleclass("EditBox", Widget)
+local EditBox = class("EditBox", Widget)
 
-function EditBox:initialize(startText)
-	Widget.initialize(self)
+function EditBox:new(startText)
+	self:Widget()
 
 	self:setPadding(4, 0)
 

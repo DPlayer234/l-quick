@@ -3,10 +3,10 @@ EventHandlers are for grouping methods and calling them all at once.
 ]]
 local remove = table.remove
 
-local EventHandler = middleclass("EventHandler")
+local EventHandler = class("EventHandler")
 
 -- Initialize a new EventHandler
-function EventHandler:initialize()
+function EventHandler:new()
 	self._list = {}
 end
 

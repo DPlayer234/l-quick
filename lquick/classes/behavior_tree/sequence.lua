@@ -6,14 +6,14 @@ local currentModule = (...):gsub("[^%.]*$", "")
 
 local Node = require(currentModule .. "node")
 
-local Sequence = middleclass("Sequence", Node)
+local Sequence = class("Sequence", Node)
 
-function Sequence:initialize()
-	Node.initialize(self)
+function Sequence:new()
+	self:Node()
 end
 
 function Sequence:reset()
-	Node.reset(self)
+	self.Node.reset(self)
 	self._index = 1
 end
 

@@ -6,10 +6,10 @@ local love = require "love"
 local Widget = require(parentModule .. ".widget")
 
 local Button = require(currentModule .. ".button")
-local CheckBox = middleclass("CheckBox", Button)
+local CheckBox = class("CheckBox", Button)
 
-function CheckBox:initialize(initState)
-	Button.initialize(self)
+function CheckBox:new(initState)
+	self:Button()
 
 	self.checked = initState and true
 

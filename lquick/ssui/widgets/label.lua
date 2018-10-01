@@ -2,10 +2,10 @@ local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 
 local Widget = require(parentModule .. ".widget")
 
-local Label = middleclass("Label", Widget)
+local Label = class("Label", Widget)
 
-function Label:initialize(text, font, wrapMode)
-	Widget.initialize(self)
+function Label:new(text, font, wrapMode)
+	self:Widget()
 
 	self.text = text or ""
 	self.font = font or love.graphics.getFont()

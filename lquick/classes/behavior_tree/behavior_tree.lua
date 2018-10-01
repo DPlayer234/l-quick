@@ -6,7 +6,7 @@ instead of the BehaviorTree.
 ]]
 local currentModule = (...):gsub("[^%.]*$", "")
 
-local BehaviorTree = middleclass("BehaviorTree")
+local BehaviorTree = class("BehaviorTree")
 
 BehaviorTree.Node     = require(currentModule .. "node")
 BehaviorTree.Task     = require(currentModule .. "task")
@@ -15,7 +15,7 @@ BehaviorTree.Sequence = require(currentModule .. "sequence")
 BehaviorTree.Parallel = require(currentModule .. "parallel")
 
 -- Initialize a new BehaviorTree based on the given data structure
-function BehaviorTree:initialize(data)
+function BehaviorTree:new(data)
 	self._root = BehaviorTree.Node.createFromData(data)
 end
 

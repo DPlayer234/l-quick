@@ -2,10 +2,10 @@ local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 
 local Widget = require(parentModule .. ".widget")
 
-local Button = middleclass("Button", Widget)
+local Button = class("Button", Widget)
 
-function Button:initialize()
-	Widget.initialize(self)
+function Button:new()
+	self:Widget()
 
 	self._pressed = false
 

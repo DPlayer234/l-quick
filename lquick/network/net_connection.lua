@@ -4,10 +4,10 @@ You never need to create these explicitly.
 ]]
 local enet = require "enet"
 
-local NetConnection = middleclass("NetConnection")
+local NetConnection = class("NetConnection")
 
 -- Initializes a NetConnection instance.
-function NetConnection:initialize(host, address)
+function NetConnection:new(host, address)
 	if host.connect then
 		-- Object is a host and can connect somewhere
 		self._peer = host:connect(address)
@@ -48,16 +48,16 @@ function NetConnection:__tostring()
 end
 
 -- All ENet connection states
-NetConnection.static.DISCONNECTED     = "disconnected"
-NetConnection.static.CONNECTING       = "connecting"
-NetConnection.static.ACK_CONNECT      = "acknowledging_connect"
-NetConnection.static.PENDING          = "connection_pending"
-NetConnection.static.SUCCESS          = "connection_succeeded"
-NetConnection.static.CONNECTED        = "connected"
-NetConnection.static.DISCONNECT_LATER = "disconnect_later"
-NetConnection.static.DISCONNECTING    = "disconnecting"
-NetConnection.static.ACK_DISCONNECT   = "acknowledging_disconnect"
-NetConnection.static.ZOMBIE           = "zombie"
-NetConnection.static.UNKNOWN          = "unknown"
+NetConnection.DISCONNECTED     = "disconnected"
+NetConnection.CONNECTING       = "connecting"
+NetConnection.ACK_CONNECT      = "acknowledging_connect"
+NetConnection.PENDING          = "connection_pending"
+NetConnection.SUCCESS          = "connection_succeeded"
+NetConnection.CONNECTED        = "connected"
+NetConnection.DISCONNECT_LATER = "disconnect_later"
+NetConnection.DISCONNECTING    = "disconnecting"
+NetConnection.ACK_DISCONNECT   = "acknowledging_disconnect"
+NetConnection.ZOMBIE           = "zombie"
+NetConnection.UNKNOWN          = "unknown"
 
 return NetConnection

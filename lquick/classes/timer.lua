@@ -8,10 +8,10 @@ local type = type
 
 local Coroutine = require(currentModule .. "coroutine")
 
-local Timer = middleclass("Timer")
+local Timer = class("Timer")
 
 -- Initializes a new timer
-function Timer:initialize()
+function Timer:new()
 	self._time = 0
 	self._tasks = {}
 end

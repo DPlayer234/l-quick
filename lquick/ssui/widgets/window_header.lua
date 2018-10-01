@@ -4,7 +4,7 @@ local currentModule = (...):gsub("%.[^%.]+$", "")
 local Button = require(currentModule .. ".button")
 local Widget = require(parentModule .. ".widget")
 
-local WindowHeader = middleclass("WindowHeader", Widget)
+local WindowHeader = class("WindowHeader", Widget)
 
 local HEADER_HEIGHT = 16 --#const
 
@@ -15,9 +15,9 @@ local onCloseClick = function(self)
 	self.parent.parent:emit("close")
 end
 
-function WindowHeader:initialize(height, dragable, closable)
+function WindowHeader:new(height, dragable, closable)
 	if height == true or height == false or height == nil then height = HEADER_HEIGHT end
-	Widget.initialize(self)
+	self:Widget()
 	self:setPositionMode("absolute", 0, 0)
 	self:setSizeMode("absolute", height, height)
 

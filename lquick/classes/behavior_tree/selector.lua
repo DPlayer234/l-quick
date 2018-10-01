@@ -6,14 +6,14 @@ local currentModule = (...):gsub("[^%.]*$", "")
 
 local Node = require(currentModule .. "node")
 
-local Selector = middleclass("Selector", Node)
+local Selector = class("Selector", Node)
 
-function Selector:initialize()
-	Node.initialize(self)
+function Selector:new()
+	self:Node()
 end
 
 function Selector:reset()
-	Node.reset(self)
+	self.Node.reset(self)
 	self._index = 1
 end
 

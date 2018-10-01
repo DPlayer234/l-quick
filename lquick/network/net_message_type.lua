@@ -9,14 +9,14 @@ local assert, pairs, type, tostring, tonumber = assert, pairs, type, tostring, t
 
 assert(bitser, "bitser is not loaded into the global variable.")
 
-local NetMessageType = middleclass("NetMessageType")
+local NetMessageType = class("NetMessageType")
 
 -- Initializes a NetMessageType instance.
-function NetMessageType:initialize(name)
+function NetMessageType:new(name)
 	self._name = assert(name, "A message type needs a name")
 	self._tempHandlers = {}
 
-	self.mode = NetMessageType.UNRELIABLE
+	self.mode = self.UNRELIABLE
 	self.args = {}
 
 	self.netPeer = nil
@@ -41,7 +41,7 @@ end
 function NetMessageType:validate()
 	--#exclude start
 	assert(type(self.args) == "table", "'args' has to be a table")
-	assert(self.mode == NetMessageType.UNRELIABLE or self.mode == NetMessageType.RELIABLE, "'mode' has to be a NetMessageType.UNRELIABLE or NetMessageType.RELIABLE")
+	assert(self.mode == self.UNRELIABLE or self.mode == self.RELIABLE, "'mode' has to be a NetMessageType.UNRELIABLE or NetMessageType.RELIABLE")
 	assert(type(self.onReceive) == "function", "'onReceive' has to be a function")
 	--#exclude end
 end
@@ -111,13 +111,13 @@ function NetMessageType:__tostring()
 end
 
 -- Internal. Decodes a datagram into a message.
-function NetMessageType.static:_decode(datagram)
+function NetMessageType:_decode(datagram)
 	local message = bitser.loads(datagram)
 	if type(message) ~= "table" then return end
 	return message
 end
 
-NetMessageType.static.UNRELIABLE = "unsequenced"
-NetMessageType.static.RELIABLE   = "reliable"
+NetMessageType.UNRELIABLE = "unsequenced"
+NetMessageType.RELIABLE   = "reliable"
 
 return NetMessageType

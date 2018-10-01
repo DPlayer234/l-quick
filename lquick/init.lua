@@ -3,7 +3,7 @@ For quickstarting making a game.
 ]]
 local lquick = {}
 
-assert(middleclass, "middleclass is not loaded into the global variable.")
+assert(class, "class is not loaded into the global variable.")
 
 -- Represents the folder structure.
 -- Tables are folders and anything else is a file with the

@@ -3,10 +3,10 @@ This simulates a try-catch-finally instruction.
 ]]
 local pcall, tostring = pcall, tostring
 
-local Try = middleclass("Try")
+local Try = class("Try")
 
 -- Starts a new block.
-function Try:initialize(closure)
+function Try:new(closure)
 	self._success, self._exception = pcall(closure)
 	if self._success then self._exception = nil end
 	return self

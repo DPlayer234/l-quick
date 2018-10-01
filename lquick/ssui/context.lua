@@ -4,10 +4,10 @@ local love = require "love"
 
 local Widget = require(currentModule .. ".widget")
 
-local Context = middleclass("Context", Widget)
+local Context = class("Context", Widget)
 
-function Context:initialize()
-	Widget.initialize(self)
+function Context:new()
+	self:Widget()
 	self:setPositionMode("relative", 0, 0)
 	self:setSizeMode("relative", 1, 1)
 
@@ -31,7 +31,7 @@ function Context:initialize()
 end
 
 function Context:draw()
-	Widget.draw(self)
+	self.Widget.draw(self)
 
 	if self._nextTooltip then
 		self._nextTooltip:drawTooltip()
@@ -69,7 +69,7 @@ end
 
 function Context:setContext(context)
 	if context == self then
-		return Widget.setContext(self, context)
+		return self.Widget.setContext(self, context)
 	end
 
 	error("Cannot add contexts to other widgets!", 2)
@@ -164,7 +164,7 @@ local function merged(base, over)
 end
 
 function Context:setTheme(value)
-	Widget.setTheme(self, merged(self.defaultTheme, value))
+	self.Widget.setTheme(self, merged(self.defaultTheme, value))
 end
 
 local function c(cstring)

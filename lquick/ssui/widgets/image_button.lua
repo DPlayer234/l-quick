@@ -6,10 +6,10 @@ local love = require "love"
 local Widget = require(parentModule .. ".widget")
 
 local Button = require(currentModule .. ".button")
-local ImageButton = middleclass("ImageButton", Button)
+local ImageButton = class("ImageButton", Button)
 
-function ImageButton:initialize(texture, quad)
-	Button.initialize(self)
+function ImageButton:new(texture, quad)
+	self:Button()
 	self._texture = texture
 	self._quad = quad
 

@@ -2,10 +2,10 @@ local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 
 local Widget = require(parentModule .. ".widget")
 
-local Empty = middleclass("Empty", Widget)
+local Empty = class("Empty", Widget)
 
-function Empty:initialize()
-	Widget.initialize(self)
+function Empty:new()
+	self:Widget()
 	self.transparent = true
 end
 

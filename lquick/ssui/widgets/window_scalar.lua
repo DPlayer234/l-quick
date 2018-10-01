@@ -7,12 +7,12 @@ local math = math
 local Widget = require(parentModule .. ".widget")
 local Button = require(currentModule .. ".button")
 
-local WindowScalar = middleclass("WindowScalar", Button)
+local WindowScalar = class("WindowScalar", Button)
 
 local SCALAR_SIZE = 16
 
-function WindowScalar:initialize()
-	Button.initialize(self)
+function WindowScalar:new()
+	self:Button()
 	self:setPositionMode("relative", 1, 1)
 	self:setSizeMode("absolute", SCALAR_SIZE, SCALAR_SIZE)
 	self:setAlign(1, 1)

@@ -7,12 +7,12 @@ local table = table
 local Label = require(currentModule .. ".label")
 local Widget = require(parentModule .. ".widget")
 
-local StackPanel = middleclass("StackPanel", Widget)
+local StackPanel = class("StackPanel", Widget)
 
-local StackChild = middleclass("StackChild", Widget)
+local StackChild = class("StackChild", Widget)
 
-function StackPanel:initialize(direction, size)
-	Widget.initialize(self)
+function StackPanel:new(direction, size)
+	self:Widget()
 
 	self._vertical = direction == "vertical"
 	self._size = size
@@ -22,13 +22,13 @@ function StackPanel:initialize(direction, size)
 end
 
 function StackPanel:setPadding(a, b, c, d)
-	Widget.setPadding(self, a, b, c, d)
+	self.Widget.setPadding(self, a, b, c, d)
 	self._padding = self._padding * 0.5
 	return self
 end
 
 function StackPanel:add(widget)
-	Widget.add(self, StackChild(self, widget))
+	self.Widget.add(self, StackChild(self, widget))
 
 	self._nextPos = self._size * #self._children
 
@@ -38,8 +38,8 @@ end
 --[[
 Define the panel children
 ]]
-function StackChild:initialize(parent, widget)
-	Widget.initialize(self)
+function StackChild:new(parent, widget)
+	self:Widget()
 
 	self._vertical = parent._vertical
 
@@ -69,7 +69,7 @@ function StackChild:recalculatePosition()
 		self._height = h
 	end
 
-	return Widget.recalculatePosition(self)
+	return self.Widget.recalculatePosition(self)
 end
 
 return StackPanel

@@ -2,9 +2,9 @@
 Post-processing tests
 ]]
 do
-	CEffect = middleclass("CEffect", lquick.Effect)
+	CEffect = class("CEffect", lquick.Effect)
 
-	function CEffect:initialize()
+	function CEffect:new()
 		self.uniforms = {
 			time = 0
 		}
@@ -49,7 +49,7 @@ do
 end
 
 do
-	G_renderer = lquick.Renderer:new()
+	G_renderer = lquick.Renderer()
 	G_image = love.graphics.newImage("tests/rendering/image.png")
 end
 

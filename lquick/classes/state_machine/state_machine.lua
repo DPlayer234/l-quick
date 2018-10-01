@@ -4,13 +4,13 @@ You can add any amount of states to it.
 ]]
 local currentModule = (...):gsub("[^%.]*$", "")
 
-local StateMachine = middleclass("StateMachine")
+local StateMachine = class("StateMachine")
 
 StateMachine.State      = require(currentModule .. "state")
 StateMachine.Transition = require(currentModule .. "transition")
 
 -- Initialize a new empty state machine.
-function StateMachine:initialize()
+function StateMachine:new()
 	self._states = {}
 	self._state = nil
 	self._nextState = nil

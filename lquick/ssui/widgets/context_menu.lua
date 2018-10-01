@@ -10,14 +10,14 @@ local StackPanel = require(currentModule .. ".stack_panel")
 local Tooltip = require(currentModule .. ".tooltip")
 local Window = require(currentModule .. ".window")
 
-local ContextMenu = middleclass("ContextMenu", Button)
+local ContextMenu = class("ContextMenu", Button)
 
-local ContextWindow = middleclass("ContextWindow", Window)
+local ContextWindow = class("ContextWindow", Window)
 
 local INDICATOR_WIDTH = 12 --#const
 
-function ContextMenu:initialize(default, options)
-	Button.initialize(self)
+function ContextMenu:new(default, options)
+	self:Button()
 
 	self._selected = default
 	self._options = options or {}
@@ -38,7 +38,7 @@ function ContextMenu:initialize(default, options)
 end
 
 function ContextMenu:setPadding(a, b, c, d)
-	Button.setPadding(self, a, b, c, d)
+	self.Widget.setPadding(self, a, b, c, d)
 
 	self:_adjustPadding()
 
@@ -95,14 +95,14 @@ function ContextMenu:_onContextDestroy()
 	end
 end
 
-function ContextWindow:initialize(contextMenu)
+function ContextWindow:new(contextMenu)
 	local x, y, w, h = contextMenu:getInnerRect()
 
 	self._contextMenu = contextMenu
 	self._options = contextMenu._options
 	self._tooltips = contextMenu._tooltips
 
-	Window.initialize(self, x, y, w, h * #self._options)
+	self:Window(x, y, w, h * #self._options)
 
 	self._panel = StackPanel("vertical", h)
 	self:add(self._panel)

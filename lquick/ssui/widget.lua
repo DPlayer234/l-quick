@@ -7,10 +7,10 @@ local table, math = table, math
 local Thickness = require(currentModule .. ".thickness")
 local EventEmitter = require(currentModule .. ".event_emitter")
 
-local Widget = middleclass("Widget", EventEmitter)
+local Widget = class("Widget", EventEmitter)
 
-function Widget:initialize()
-	EventEmitter.initialize(self)
+function Widget:new()
+	self:EventEmitter()
 
 	self._context = false
 	self.parent = false

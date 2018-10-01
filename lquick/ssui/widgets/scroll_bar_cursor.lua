@@ -5,10 +5,10 @@ local math = math
 
 local Widget = require(parentModule .. ".widget")
 
-local ScrollBarCursor = middleclass("ScrollBarCursor", Widget)
+local ScrollBarCursor = class("ScrollBarCursor", Widget)
 
-function ScrollBarCursor:initialize(widget, vertical)
-	Widget.initialize(self)
+function ScrollBarCursor:new(widget, vertical)
+	self:Widget()
 	self._widget = widget
 	self._vertical = vertical
 
@@ -62,12 +62,12 @@ function ScrollBarCursor:recalculateValue()
 end
 
 function ScrollBarCursor:recalculatePosition()
-	Widget.recalculatePosition(self)
+	self.Widget.recalculatePosition(self)
 	self:recalculateValue()
 end
 
 function ScrollBarCursor:recalculateSize()
-	Widget.recalculateSize(self)
+	self.Widget.recalculateSize(self)
 	self:recalculateValue()
 end
 

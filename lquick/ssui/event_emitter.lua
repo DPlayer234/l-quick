@@ -1,8 +1,8 @@
 local table = table
 
-local EventEmitter = middleclass("EventEmitter")
+local EventEmitter = class("EventEmitter")
 
-function EventEmitter:initialize()
+function EventEmitter:new()
 	self._events = {}
 end
 

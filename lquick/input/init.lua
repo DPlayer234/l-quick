@@ -56,9 +56,9 @@ end
 
 -- Input classes
 -- Base Input class
-local Input = middleclass("Input")
+local Input = class("Input")
 do
-	function Input:initialize()
+	function Input:new()
 		self:reset()
 	end
 
@@ -160,10 +160,10 @@ do
 end
 
 -- Keyboard Input
-local KeyboardInput = middleclass("KeyboardInput", Input)
+local KeyboardInput = class("KeyboardInput", Input)
 do
-	function KeyboardInput:initialize(bound, down, up)
-		Input.initialize(self)
+	function KeyboardInput:new(bound, down, up)
+		self:Input()
 
 		self._bound = bound or boundKeys
 		self._downEvents = down or {}
@@ -193,10 +193,10 @@ do
 end
 
 -- Gamepad Button Input
-local GamepadButtonInput = middleclass("GamepadInput", Input)
+local GamepadButtonInput = class("GamepadInput", Input)
 do
 	function GamepadButtonInput:new(joystick, bound, down, up)
-		Input.initialize(self)
+		self:Input()
 		self._joystick = joystick
 
 		self._bound = bound or boundButtons
@@ -227,10 +227,10 @@ do
 end
 
 -- Gamepad Axis Input
-local GamepadAxisInput = middleclass("GamepadAxisInput", Input)
+local GamepadAxisInput = class("GamepadAxisInput", Input)
 do
 	function GamepadAxisInput:new(joystick, bound, down, up)
-		Input.initialize(self)
+		self:Input()
 		self._joystick = joystick
 
 		self._bound = bound or boundAxes
@@ -282,10 +282,10 @@ do
 end
 
 -- Mouse Input
-local MouseInput = middleclass("MouseInput", Input)
+local MouseInput = class("MouseInput", Input)
 do
 	function MouseInput:new(bound, down, up)
-		Input.initialize(self)
+		self:Input()
 
 		self._bound = bound or boundMouse
 		self._downEvents = down or {}
@@ -350,7 +350,7 @@ do
 end
 
 -- Merges multiple input instances into one
-local MergedInput = middleclass("MergedInput", Input)
+local MergedInput = class("MergedInput", Input)
 do
 	function MergedInput:new(...)
 		self.handlers = {...}
@@ -437,12 +437,12 @@ do
 end
 
 -- Merges GamepadButtonInput and GamepadAxisInput
-local GamepadInput = middleclass("GamepadInput", MergedInput)
+local GamepadInput = class("GamepadInput", MergedInput)
 do
 	function GamepadInput:new(...)
 		self.buttons = GamepadButtonInput(...)
 		self.axes = GamepadAxisInput(...)
-		MergedInput.initialize(self.buttons, self.axes)
+		self:MergedInput(self.buttons, self.axes)
 	end
 
 	GamepadInput.add        = nil
