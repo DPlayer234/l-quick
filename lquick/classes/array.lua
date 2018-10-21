@@ -192,4 +192,9 @@ function Array.from(...)
 	return setmetatable({ ... }, Array.BASE)
 end
 
+-- Converts a Lua array to one of this class in place.
+function Array.to(luaArray)
+	return setmetatable(luaArray, Array.BASE)
+end
+
 return Array
