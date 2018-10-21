@@ -13,6 +13,7 @@ local loadables = {
 	classes = {
 		behavior_tree = "BehaviorTree",
 		state_machine = "StateMachine",
+		array = "Array",
 		color = "Color",
 		coroutine = "Coroutine",
 		event_handler = "EventHandler",
