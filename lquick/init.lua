@@ -18,6 +18,7 @@ local loadables = {
 		coroutine = "Coroutine",
 		event_handler = "EventHandler",
 		event_store = "EventStore",
+		map = "Map",
 		timer = "Timer",
 		try = "try"
 	},

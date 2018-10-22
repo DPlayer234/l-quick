@@ -46,6 +46,18 @@ function Array:reversed()
 	return arr
 end
 
+-- Sorts the array in place by some condition.
+function Array:sort(sorter)
+	table.sort(self, sorter)
+end
+
+-- Creates a new array with all elements sorted by some condition.
+function Array:sorted(sorter)
+	local arr = Array.copy(self)
+	arr:sort(sorter)
+	return arr
+end
+
 -- Joins all values in the array to a string. May throw an error with invalid values.
 function Array:join(sep)
 	return table.concat(self, sep or ", ")
@@ -73,11 +85,11 @@ function Array:some(cond)
 	return false
 end
 
--- Reduces an array to a single value by accumulating each value via red(acc, value).
+-- Reduces an array to a single value by accumulating each value via red(acc, value, index).
 -- acc is the starting value and defaults to nil.
 function Array:reduce(red, acc)
 	for i = 1, #self do
-		acc = red(acc, self[i])
+		acc = red(acc, self[i], i)
 	end
 
 	return acc
@@ -144,6 +156,17 @@ function Array:lastIndexOf(value, fromIndex)
 	end
 end
 
+-- Returns whether the value is contained in the array
+function Array:contains(value)
+	for i = 1, #self do
+		if self[i] == value then
+			return true
+		end
+	end
+
+	return false
+end
+
 -- Returns a slice of the array.
 function Array:slice(begin, stop)
 	begin = toPosIndex(self, begin or 1)
@@ -175,6 +198,20 @@ function Array:splice(start, deleteCount, ...)
 	end
 
 	return arr
+end
+
+-- Removes a value from an array
+function Array:remove(value)
+	local index = Array.indexOf(self, value)
+	if index then
+		Array.removeAt(self, index)
+	end
+	return false
+end
+
+-- Removes an element at a specified index and returns it
+function Array:removeAt(index)
+	return table.remove(self, index)
 end
 
 -- Returns an iterator for the array. (ipairs(self))
