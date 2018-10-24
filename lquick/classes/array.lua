@@ -74,6 +74,30 @@ function Array:map(mapper)
 	return arr
 end
 
+-- Returns a new array where all the elements match filter(value, index).
+function Array:filter(filter)
+	local arr = Array()
+
+	for i = 1, #self do
+		if filter(self[i], i) then
+			arr:push(self[i])
+		end
+	end
+
+	return arr
+end
+
+-- Filters the array in place similar to Array:filter(filter).
+function Array:filterInPlace(filter)
+	for i = #self, 1, -1 do
+		if not filter(self[i], i) then
+			table.remove(self, i)
+		end
+	end
+
+	return self
+end
+
 -- Returns whether at least one element in the array matches the condition given by cond(value, index).
 function Array:some(cond)
 	for i = 1, #self do
@@ -200,11 +224,12 @@ function Array:splice(start, deleteCount, ...)
 	return arr
 end
 
--- Removes a value from an array
+-- Removes a value from an array and returns whether the operation was successful.
 function Array:remove(value)
 	local index = Array.indexOf(self, value)
 	if index then
 		Array.removeAt(self, index)
+		return true
 	end
 	return false
 end
@@ -229,7 +254,7 @@ function Array.from(...)
 	return setmetatable({ ... }, Array.BASE)
 end
 
--- Converts a Lua array to one of this class in place.
+-- Converts a Lua array to one of this class in place and returns it.
 function Array.to(luaArray)
 	return setmetatable(luaArray, Array.BASE)
 end
