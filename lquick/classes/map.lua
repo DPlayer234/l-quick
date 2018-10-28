@@ -174,7 +174,7 @@ function Map._toKeyArray_mapper(value, key)
 end
 
 -- Converts a Lua table to one of this class in place.
-function Map.to(luaTable)
+function Map.STATIC.to(luaTable)
 	return setmetatable(luaTable, Map.BASE)
 end
 

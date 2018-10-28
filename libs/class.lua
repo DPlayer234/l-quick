@@ -39,9 +39,9 @@ function class.instantiate(cls, ...)
 end
 
 -- These fields cannot be set
-local reservedClassFields = {
-	CLASS = true
-}
+local function isFieldNameReserved(fname)
+	return fname:find("^[A-Z]+$") ~= nil
+end
 
 -- These functions are called on the class upon extension
 local extendByField = {
@@ -99,7 +99,7 @@ end
 
 -- Internally used to extend classes.
 function class._extendExact(cls, k, v)
-	if reservedClassFields[k] then
+	if isFieldNameReserved(k) then
 		error("Field '" .. tostring(k) .. "' is reserved in classes.", 3)
 	else
 		rawset(cls.BASE, k, v)
@@ -194,6 +194,18 @@ function class.new(name, rawbase, parent)
 
 	rawset(cls, "CLASS", cls)
 	rawset(base, "CLASS", cls)
+
+	rawset(cls, "STATIC", setmetatable({}, {
+		__newindex = function(t, k, v)
+			if isFieldNameReserved(k) then
+				error("Field '" .. tostring(k) .. "' is reserved in classes.", 2)
+			end
+			rawset(cls, k, v)
+		end,
+		__index = function(t, k)
+			return rawget(cls, k)
+		end
+	}))
 
 	-- Add new fields
 	if rawbase then

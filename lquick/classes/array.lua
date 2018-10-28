@@ -250,12 +250,12 @@ function Array:unpack()
 end
 
 -- Creates an array from a set of values.
-function Array.from(...)
+function Array.STATIC.from(...)
 	return setmetatable({ ... }, Array.BASE)
 end
 
 -- Converts a Lua array to one of this class in place and returns it.
-function Array.to(luaArray)
+function Array.STATIC.to(luaArray)
 	return setmetatable(luaArray, Array.BASE)
 end
 
