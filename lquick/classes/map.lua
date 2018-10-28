@@ -40,7 +40,7 @@ function Map:contains(value)
 			return true
 		end
 	end
-	
+
 	return false
 end
 
@@ -124,8 +124,8 @@ function Map:some(cond)
 end
 
 -- Reduces a map to a single value by accumulating each value via red(acc, value, key).
--- acc is the starting value and defaults to nil.
-function Map:reduce(red, acc)
+-- acc is the starting value.
+function Map:reduce(acc, red)
 	for k, v in pairs(self) do
 		acc = red(acc, v, k)
 	end

@@ -110,8 +110,8 @@ function Array:some(cond)
 end
 
 -- Reduces an array to a single value by accumulating each value via red(acc, value, index).
--- acc is the starting value and defaults to nil.
-function Array:reduce(red, acc)
+-- acc is the starting value.
+function Array:reduce(acc, red)
 	for i = 1, #self do
 		acc = red(acc, self[i], i)
 	end

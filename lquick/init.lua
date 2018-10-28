@@ -92,6 +92,12 @@ function lquick.load(key)
 	return onIndex(lquick, key)
 end
 
+function lquick.globalize(...)
+	for _, var in pairs {...} do
+		_G[var] = lquick[var]
+	end
+end
+
 return setmetatable(lquick, {
 	__index = onIndex
 })

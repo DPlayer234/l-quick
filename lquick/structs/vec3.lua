@@ -53,7 +53,8 @@ local methods = {
 	end,
 	-- Returns a new vector with the same direction as the original, but a magnitude of 1
 	getNormalized = function(self)
-		return self / self:getMagnitude()
+		local magnitude = self:getMagnitude()
+		return magnitude == 0 and self:copy() or self / magnitude
 	end,
 	-- Gets the angle of a vector in relation to the coordinate grid
 	getAngle = function(self)
