@@ -42,7 +42,7 @@ function EditBox:setTextNoValidate(value)
 	self._chars = {}
 	self._cursorPos = 1
 
-	self:_addText(value)
+	self:_addText(tostring(value))
 end
 
 function EditBox:_onValidate()

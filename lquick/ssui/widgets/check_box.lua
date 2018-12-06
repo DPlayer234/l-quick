@@ -11,7 +11,7 @@ local CheckBox = class("CheckBox", Button)
 function CheckBox:new(initState)
 	self:Button()
 
-	self.checked = initState and true
+	self.checked = initState or false
 
 	self:on("click", self._onCheckBoxClick)
 end

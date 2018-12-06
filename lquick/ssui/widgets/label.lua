@@ -1,5 +1,6 @@
 local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 
+local utf8 = require "utf8"
 local Widget = require(parentModule .. ".widget")
 
 local Label = class("Label", Widget)
@@ -50,14 +51,14 @@ function Label:getCharRect(index)
 	local line = table.remove(wrappedLines, 1)
 	if not line then return x, y - fontHeight * 0.5, 1, fontHeight end
 
-	while index > #line do
-		index = index - #line
+	while index > utf8.len(line) do
+		index = index - utf8.len(line)
 		line = table.remove(wrappedLines, 1)
 		if not line then return end
 		y = y + fontHeight
 	end
 
-	return x + self.font:getWidth(line:sub(1, index)), y,
+	return x + (index < 1 and 0 or self.font:getWidth(line:sub(1, utf8.offset(line, index + 1) - 1))), y,
 		1, fontHeight
 end
 

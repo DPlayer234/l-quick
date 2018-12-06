@@ -50,12 +50,28 @@ function ContextMenu:setTooltips(tooltips)
 	return self
 end
 
-function ContextMenu:setSelected(option)
-	self:emit("select", option)
+function ContextMenu:getOptions()
+	return self._options
+end
+
+function ContextMenu:setOptions(options)
+	self._options = options
+end
+
+function ContextMenu:getOptionCount()
+	local count = 0
+	for k, v in pairs(self._options) do
+		count = count + 1
+	end
+	return count
 end
 
 function ContextMenu:getSelected()
 	return self._selected
+end
+
+function ContextMenu:setSelected(option)
+	self:emit("select", option)
 end
 
 function ContextMenu:_adjustPadding()
@@ -102,7 +118,7 @@ function ContextWindow:new(contextMenu)
 	self._options = contextMenu._options
 	self._tooltips = contextMenu._tooltips
 
-	self:Window(x, y, w, h * #self._options)
+	self:Window(x, y, w, h * contextMenu:getOptionCount())
 
 	self._panel = StackPanel("vertical", h)
 	self:add(self._panel)
