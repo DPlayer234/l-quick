@@ -2,6 +2,7 @@
 Networking tests
 ]]
 do
+	-- luacheck: globals G_netPeer G_connectMessage G_disconnectMessage G_playerInfoMessage G_sendTestMessage
 	G_netPeer = lquick.NetPeer()
 
 	G_connectMessage = G_netPeer:getMessageType("connect")

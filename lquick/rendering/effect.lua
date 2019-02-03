@@ -1,8 +1,6 @@
 --[[
 A post-processing effect
 ]]
-local love_graphics = require "love.graphics"
-
 local Effect = class("Effect")
 
 -- Override for varying uniform updates

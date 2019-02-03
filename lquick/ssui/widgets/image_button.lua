@@ -1,9 +1,6 @@
-local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 local currentModule = (...):gsub("%.[^%.]+$", "")
 
 local love = require "love"
-
-local Widget = require(parentModule .. ".widget")
 
 local Button = require(currentModule .. ".button")
 local ImageButton = class("ImageButton", Button)
@@ -34,7 +31,7 @@ function ImageButton:_onQuadButtonDraw()
 	local x, y, w, h = self:getRect()
 	love.graphics.setColor(self:getImageColor())
 
-	local vx, vy, vw, vh = self._quad:getViewport()
+	local _, _, vw, vh = self._quad:getViewport()
 	love.graphics.draw(self._texture, self._quad, x, y, 0, w / vw, h / vh)
 end
 

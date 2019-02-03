@@ -2,8 +2,6 @@
 This defines the transition and condition for the transition from one state to another.
 If you instantiate the same Transition often, consider inheriting this call and overriding check.
 ]]
-local currentModule = (...):gsub("[^%.]*$", "")
-
 local Transition = class("Transition")
 
 -- Initialize a new transition, specifiying the state to transition to by reference or name.

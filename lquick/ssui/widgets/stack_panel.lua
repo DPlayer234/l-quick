@@ -1,10 +1,5 @@
 local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
-local currentModule = (...):gsub("%.[^%.]+$", "")
 
-local utf8 = require "utf8"
-local table = table
-
-local Label = require(currentModule .. ".label")
 local Widget = require(parentModule .. ".widget")
 
 local StackPanel = class("StackPanel", Widget)

@@ -1,4 +1,3 @@
-local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 local currentModule = (...):gsub("%.[^%.]+$", "")
 
 local love = require "love"

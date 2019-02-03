@@ -3,11 +3,7 @@ This defines a State.
 If a specific state is used often, it is smarter to inherit this class and define them directly.
 For classes, override update, exit and enter, otherwise call setUpdate, setExit and setEntry.
 ]]
-local currentModule = (...):gsub("[^%.]*$", "")
-
 local State = class("State")
-
-local Transition = require(currentModule .. "transition")
 
 -- Initialize a new named state
 function State:new(name)

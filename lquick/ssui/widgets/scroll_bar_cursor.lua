@@ -1,6 +1,5 @@
 local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 
-local love = require "love"
 local math = math
 
 local Widget = require(parentModule .. ".widget")

@@ -2,7 +2,7 @@ local currentModule = (...):gsub("%.[^%.]+$", "")
 
 local love = require "love"
 local type = type
-local table, math = table, math
+local table = table
 
 local Thickness = require(currentModule .. ".thickness")
 local EventEmitter = require(currentModule .. ".event_emitter")
@@ -399,7 +399,8 @@ function Widget:findOverlappingChild(mx, my, focus, startIndex)
 end
 
 function Widget:findOverlap(mx, my, focus)
-	local child, index = nil, 0
+	local child
+	local index = 0
 	repeat
 		child, index = self:findOverlappingChild(mx, my, focus, index + 1)
 

@@ -28,7 +28,7 @@ function Label:setFont(value)
 end
 
 function Label:setWrapMode(value)
-	self.wrapMode = mode
+	self.wrapMode = value
 	return self
 end
 
@@ -46,7 +46,7 @@ end
 
 function Label:getCharRect(index)
 	local fontHeight = self.font:getHeight() * self.font:getLineHeight()
-	local x, y, width, height, textWidth, textHeight, wrappedLines = self:getDrawInfo()
+	local x, y, _, _, _, _, wrappedLines = self:getDrawInfo()
 
 	local line = table.remove(wrappedLines, 1)
 	if not line then return x, y - fontHeight * 0.5, 1, fontHeight end
@@ -63,7 +63,7 @@ function Label:getCharRect(index)
 end
 
 function Label:_onLabelDraw()
-	local x, y, width, height = self:getDrawInfo()
+	local x, y, width, _ = self:getDrawInfo()
 
 	love.graphics.setColor(self:getTheme().text)
 	love.graphics.printf(self.text, self.font, x, y, width, self.wrapMode)

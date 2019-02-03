@@ -167,7 +167,7 @@ NetPeer._eventHandlers = setmetatable({
 	receive = function(self, peer, datagram)
 		local message = NetMessageType:_decode(datagram)
 		if not message then
-			return print("NetPeer", "MessageType unknown.", messageType._type)
+			return print("NetPeer", "Invalid Message.", nil)
 		end
 
 		local messageType = self:getMessageType(message._type, true)

@@ -5,7 +5,6 @@ It cannot have any children.
 local currentModule = (...):gsub("[^%.]*$", "")
 local parentModule = currentModule:gsub("[^%.]*%.$", "")
 
-local assert = assert
 local Coroutine = require(parentModule .. "coroutine")
 local Node = require(currentModule .. "node")
 

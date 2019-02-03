@@ -2,8 +2,6 @@
 Represents a connection in the network
 You never need to create these explicitly.
 ]]
-local enet = require "enet"
-
 local NetConnection = class("NetConnection")
 
 -- Initializes a NetConnection instance.

@@ -51,11 +51,11 @@ function GridPanel:recalculateSize()
 end
 
 function GridPanel:_alignHorizontal()
-	local maxWidth, maxHeight
+	local maxWidth, _
 	if self._childMode == "absolute" then
-		maxWidth, maxHeight = self:getInnerSize()
+		maxWidth, _ = self:getInnerSize()
 	else
-		maxWidth, maxHeight = 1, 1
+		maxWidth, _ = 1, 1
 	end
 	local columns = math.max(1, math.floor(maxWidth / self._columnWidth))
 
@@ -73,8 +73,8 @@ function GridPanel:_alignHorizontal()
 	if self._childMode == "absolute" and #self.children > 0 then
 		local child = self.children[#self.children]
 		local w, h = self:getSize()
-		local cx, cy = child:getRelativePosition()
-		local cw, ch = child:getSize()
+		local _, cy = child:getRelativePosition()
+		local _, ch = child:getSize()
 		local th = cy + ch + self._padding:getHeight() + 1
 		if th ~= h then
 			self:setSize(w, th)
@@ -83,11 +83,11 @@ function GridPanel:_alignHorizontal()
 end
 
 function GridPanel:_alignVertical()
-	local maxWidth, maxHeight
+	local _, maxHeight
 	if self._childMode == "absolute" then
-		maxWidth, maxHeight = self:getInnerSize()
+		_, maxHeight = self:getInnerSize()
 	else
-		maxWidth, maxHeight = 1, 1
+		_, maxHeight = 1, 1
 	end
 	local rows = math.max(1, math.floor(maxHeight / self._rowHeight))
 
@@ -105,8 +105,8 @@ function GridPanel:_alignVertical()
 	if self._childMode == "absolute" and #self.children > 0 then
 		local child = self.children[#self.children]
 		local w, h = self:getSize()
-		local cx, cy = child:getRelativePosition()
-		local cw, ch = child:getSize()
+		local cx, _ = child:getRelativePosition()
+		local cw, _ = child:getSize()
 		local tw = cx + cw + self._padding:getWidth() + 1
 		if tw ~= w then
 			self:setSize(tw, h)

@@ -5,7 +5,7 @@ The class implementation used by Heartbeat.
 local type, tostring = type, tostring
 local setmetatable, getmetatable = setmetatable, getmetatable
 local rawget, rawset, rawequal = rawget, rawset, rawequal
-local pairs, next = pairs, next
+local pairs = pairs
 
 -- This value can be replaced with another constant if need be
 -- false may work as well.

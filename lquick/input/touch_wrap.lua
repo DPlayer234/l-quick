@@ -154,8 +154,6 @@ end
 
 -- Draws the input circles
 local function drawCircles(tab)
-	local w, h = love.graphics.getDimensions()
-
 	for i=1, #tab do
 		local tx, ty, tr = getCoordinates(tab[i])
 		love.graphics.circle("fill", tx, ty, tr)
@@ -203,7 +201,7 @@ end
 function touchWrap.touchmoved(id, x, y, dx, dy, pressure)
 	local touch = touches[id]
 	if touch then
-	 	if touch.type == "stick" then
+		if touch.type == "stick" then
 			local dx, dy = getTouchAxes(x, y, touch)
 
 			changedGamepadAxis(getInputX(touch), dx)

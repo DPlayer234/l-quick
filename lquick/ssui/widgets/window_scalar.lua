@@ -1,10 +1,8 @@
-local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 local currentModule = (...):gsub("%.[^%.]+$", "")
 
 local love = require "love"
 local math = math
 
-local Widget = require(parentModule .. ".widget")
 local Button = require(currentModule .. ".button")
 
 local WindowScalar = class("WindowScalar", Button)

@@ -31,7 +31,7 @@ function Tooltip:setFont(value)
 end
 
 function Tooltip:setWrapMode(value)
-	self.wrapMode = mode
+	self.wrapMode = value
 	return self
 end
 

@@ -2,6 +2,7 @@
 Post-processing tests
 ]]
 do
+	-- luacheck: globals CEffect G_renderer G_image
 	CEffect = class("CEffect", lquick.Effect)
 
 	function CEffect:new()

@@ -4,7 +4,6 @@ You never need to create these explicitly.
 Set the 'mode' and 'args' fields and override the 'onReceive(self, message)' method.
 ]]
 local bitser = bitser
-local table = table
 local assert, pairs, type, tostring, tonumber = assert, pairs, type, tostring, tonumber
 
 assert(bitser, "bitser is not loaded into the global variable.")

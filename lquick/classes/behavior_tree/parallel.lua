@@ -4,7 +4,6 @@ Its result is the 'and' of all its children's results.
 ]]
 local currentModule = (...):gsub("[^%.]*$", "")
 
-local assert, type = assert, type
 local Node = require(currentModule .. "node")
 
 local Parallel = class("Parallel", Node)

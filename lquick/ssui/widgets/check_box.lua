@@ -1,9 +1,4 @@
-local parentModule = (...):gsub("%.[^%.]+%.[^%.]+$", "")
 local currentModule = (...):gsub("%.[^%.]+$", "")
-
-local love = require "love"
-
-local Widget = require(parentModule .. ".widget")
 
 local Button = require(currentModule .. ".button")
 local CheckBox = class("CheckBox", Button)

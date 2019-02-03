@@ -74,7 +74,7 @@ end
 
 function Window:_adjustPadding()
 	if self._header then
-		local hw, hh = self._header:getSize()
+		local _, hh = self._header:getSize()
 		self._padding.top = self._padding.top + hh
 	end
 end
